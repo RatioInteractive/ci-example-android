@@ -17,7 +17,8 @@
 package com.example.app
 
 import android.app.Application
-import android.support.v4.app.FragmentManager
+
+import androidx.fragment.app.FragmentManager
 
 class ExampleApplication : Application() {
 
