@@ -1,0 +1,43 @@
+# application
+*.apk
+*.ap_
+
+# dex VM
+*.dex
+
+# java
+*.class
+
+# generated
+bin/
+gen/
+
+# gradle
+build/
+.gradle/
+
+# local configuration
+local.properties
+
+# proguard
+proguard/
+
+# eclipse
+.metadata/
+
+# intelliJ
+*.iml
+.idea/
+!.idea/copyright/
+!.idea/codeStyles/
+!.idea/codeStyleSettings.xml
+
+# studio
+captures/
+projectFilesBackup/
+
+# mac OS X
+.DS_Store
+
+# windows
+Thumbs.db
