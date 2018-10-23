@@ -19,12 +19,25 @@
 
     <!-- Color Definitions - ONLY USED TO DEFINE OTHER COLORS -->
     <color name="color_black">#000000</color>
+    <color name="color_blue_shade1">#4f90f7</color>
     <color name="color_gray_shade1">#18191b</color>
+    <color name="color_gray_shade2">#dddddd</color>
+    <color name="color_green_shade1">#c0d430</color>
+    <color name="color_green_shade2">#b6bc90</color>
     <color name="color_white">#ffffff</color>
 
     <!-- Theme -->
     <color name="app_primary">@color/color_black</color>
     <color name="app_primary_dark">@color/color_gray_shade1</color>
     <color name="app_accent">@color/color_white</color>
+
+    <!-- Background -->
+    <color name="background_equals">@color/color_blue_shade1</color>
+    <color name="background_launcher">@color/color_green_shade1</color>
+    <color name="background_input">@color/color_gray_shade2</color>
+    <color name="background_output">@color/color_green_shade2</color>
+
+    <!-- Text -->
+    <color name="text_secondary">@color/color_white</color>
 
 </resources>
