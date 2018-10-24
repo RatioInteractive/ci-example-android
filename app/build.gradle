@@ -83,6 +83,9 @@ dependencies {
     androidTestImplementation('androidx.test:runner:1.1.0-beta02') {
         exclude module: 'support-annotations'
     }
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
+    androidTestImplementation 'androidx.test:rules:1.1.0-beta02'
 }
 
 task androidTest(dependsOn: 'connectedDebugAndroidTest') {
