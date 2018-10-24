@@ -19,6 +19,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def secureProperties = new Properties()
+def securePropertiesFile = file("$rootProject.projectDir/secure.properties").exists() ?
+        file("$rootProject.projectDir/secure.properties") : file("$rootProject.projectDir/default.properties")
+
+securePropertiesFile.withInputStream {
+    stream -> secureProperties.load(stream)
+}
+
 android {
     compileSdkVersion rootProject.ext.sdkVersion
 
@@ -53,11 +61,21 @@ android {
         enable 'StopShip'
     }
 
+    signingConfigs {
+        release {
+            keyAlias secureProperties['keystore.key_alias']
+            keyPassword secureProperties['keystore.key_password']
+            storeFile file(secureProperties['keystore.file'])
+            storePassword secureProperties['keystore.password']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -80,12 +98,11 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
+    androidTestImplementation 'androidx.test:rules:1.1.0-beta02'
     androidTestImplementation('androidx.test:runner:1.1.0-beta02') {
         exclude module: 'support-annotations'
     }
-
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
-    androidTestImplementation 'androidx.test:rules:1.1.0-beta02'
 }
 
 task androidTest(dependsOn: 'connectedDebugAndroidTest') {

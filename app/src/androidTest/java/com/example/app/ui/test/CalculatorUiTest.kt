@@ -17,12 +17,17 @@
 package com.example.app.ui.test
 
 import androidx.test.rule.ActivityTestRule
-import com.example.app.R.id.*
+
+import com.example.app.R.id.button_clear
+import com.example.app.R.id.button_multiply
+import com.example.app.R.id.button_plus
 import com.example.app.ui.MainActivity
+
 import org.junit.Rule
 import org.junit.Test
 
 class CalculatorUiTest {
+
     @get:Rule
     val activityTestRule = ActivityTestRule<MainActivity>(MainActivity::class.java)
 
@@ -30,32 +35,28 @@ class CalculatorUiTest {
     private val expected = Verifier()
 
     @Test
-    fun twoPlusTwoIsFour() {
-        steps
-                .type(2)
-                .tapPlus()
-                .type(2)
-                .tapEquals()
+    fun calculator_TwoPlusTwo() {
+        steps.type(2)
+            .tapPlus()
+            .type(2)
+            .tapEquals()
 
-        expected
-                .inputFieldMatches("2+2")
-                .outputFieldMatches("4")
+        expected.inputFieldMatches("2+2")
+            .outputFieldMatches("4")
     }
 
     @Test
-    fun clearFields() {
-        steps
-                .type(2)
-                .tapPlus()
-                .type(2)
-                .tapEquals()
-                .tapClear()
+    fun calculator_ClearFields() {
+        steps.type(2)
+            .tapPlus()
+            .type(2)
+            .tapEquals()
+            .tapClear()
 
-        expected
-                .inputFieldMatches("")
-                .outputFieldMatches("")
-                .viewIsDisabled(button_clear)
-                .viewIsDisabled(button_multiply)
-                .viewIsDisabled(button_plus)
+        expected.inputFieldMatches("")
+            .outputFieldMatches("")
+            .viewIsDisabled(button_clear)
+            .viewIsDisabled(button_multiply)
+            .viewIsDisabled(button_plus)
     }
 }
