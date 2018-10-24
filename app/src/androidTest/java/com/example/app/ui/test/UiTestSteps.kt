@@ -19,7 +19,21 @@ package com.example.app.ui.test
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import com.example.app.R.id.*
+
+import com.example.app.R.id.button_clear
+import com.example.app.R.id.button_eight
+import com.example.app.R.id.button_equals
+import com.example.app.R.id.button_five
+import com.example.app.R.id.button_four
+import com.example.app.R.id.button_multiply
+import com.example.app.R.id.button_nine
+import com.example.app.R.id.button_one
+import com.example.app.R.id.button_plus
+import com.example.app.R.id.button_seven
+import com.example.app.R.id.button_six
+import com.example.app.R.id.button_three
+import com.example.app.R.id.button_two
+import com.example.app.R.id.button_zero
 
 class UiTestSteps {
 

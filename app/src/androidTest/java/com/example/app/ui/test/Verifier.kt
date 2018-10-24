@@ -21,10 +21,13 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
+
 import com.example.app.R
+
 import org.hamcrest.Matchers
 
 class Verifier {
+
     fun inputFieldMatches(number: String): Verifier {
         textFieldMatches(number, R.id.text_input)
         return this
@@ -35,14 +38,16 @@ class Verifier {
         return this
     }
 
-    private fun textFieldMatches(number: String, @IdRes idRes: Int) {
-        Espresso.onView(ViewMatchers.withId(idRes)).check(ViewAssertions.matches(ViewMatchers.withText(number)))
-    }
-
     fun viewIsDisabled(@IdRes idRes: Int): Verifier {
         Espresso.onView(ViewMatchers.withId(idRes)).check(isDisabled())
         return this
     }
 
-    private fun isDisabled(): ViewAssertion = ViewAssertions.matches(Matchers.not(ViewMatchers.isEnabled()))
+    private fun textFieldMatches(number: String, @IdRes idRes: Int) {
+        Espresso.onView(ViewMatchers.withId(idRes))
+            .check(ViewAssertions.matches(ViewMatchers.withText(number)))
+    }
+
+    private fun isDisabled(): ViewAssertion =
+        ViewAssertions.matches(Matchers.not(ViewMatchers.isEnabled()))
 }
