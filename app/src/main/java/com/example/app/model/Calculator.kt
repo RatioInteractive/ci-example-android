@@ -34,12 +34,20 @@ class Calculator {
                 var product = 1
 
                 for (num in times) {
-                    product *= Integer.parseInt(num)
+                    try {
+                        product *= num.toInt()
+                    } catch (e: NumberFormatException) {
+                        // skip
+                    }
                 }
 
                 result += product
             } else {
-                result += Integer.parseInt(times[0])
+                try {
+                    result += times[0].toInt()
+                } catch (e: NumberFormatException) {
+                    // skip
+                }
             }
         }
 

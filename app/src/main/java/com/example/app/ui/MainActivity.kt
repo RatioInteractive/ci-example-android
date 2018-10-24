@@ -47,29 +47,30 @@ class MainActivity : AppCompatActivity() {
         when (view.id) {
             R.id.button_one, R.id.button_two, R.id.button_three, R.id.button_four, R.id.button_five,
             R.id.button_six, R.id.button_seven, R.id.button_eight, R.id.button_nine, R.id.button_zero -> {
-                text_input.append((view as TextView).text)
                 button_clear.isEnabled = true
                 button_equals.isEnabled = true
                 button_plus.isEnabled = true
                 button_multiply.isEnabled = true
+                text_input.append((view as TextView).text)
             }
             R.id.button_plus, R.id.button_multiply -> {
-                text_input.append((view as TextView).text)
                 button_clear.isEnabled = true
                 button_equals.isEnabled = false
                 button_plus.isEnabled = false
                 button_multiply.isEnabled = false
+                text_input.append((view as TextView).text)
+                text_output.text = calculator.calculate(text_input.text).toString()
             }
             R.id.button_equals -> {
                 text_output.text = calculator.calculate(text_input.text).toString()
             }
             R.id.button_clear -> {
-                text_input.text = ""
-                text_output.text = ""
                 button_clear.isEnabled = false
                 button_equals.isEnabled = false
                 button_plus.isEnabled = false
                 button_multiply.isEnabled = false
+                text_input.text = ""
+                text_output.text = ""
             }
         }
     }

@@ -88,7 +88,6 @@ dependencies {
 task androidTest(dependsOn: 'connectedDebugAndroidTest') {
     group = 'Verification'
     description = 'Runs the tests for debug on connected devices'
-    android.defaultConfig.testInstrumentationRunnerArguments.package = 'com.example.app.unit'
 }
 
 task unitTest(dependsOn: 'testDebugUnitTest') {
