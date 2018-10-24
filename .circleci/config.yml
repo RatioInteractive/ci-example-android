@@ -73,7 +73,7 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run: chmod +x ./gradlew
-      - run: ./gradlew assembleRelease
+      - run: ./gradlew assembleRelease -PbuildNumber=${CIRCLE_BUILD_NUM}
       - store_artifacts:
           path: app/build/outputs/apk
           destination: apk
@@ -83,37 +83,26 @@ jobs:
 
 workflows:
   version: 2
-
-  merge:
+  build:
     jobs:
       - dependencies
       - lint_test:
-        requires:
-          -dependencies
+          requires:
+            - dependencies
       - unit_test:
-        requires:
-          -dependencies
+          requires:
+            - dependencies
       - merge_build:
-        requires:
-          - lint_test
-          - unit_test
-        filters:
-          branches:
-            ignore: master
-
-  release:
-    jobs:
-      - dependencies
-      - lint_test:
-        requires:
-          -dependencies
-      - unit_test:
-        requires:
-          -dependencies
+          requires:
+            - lint_test
+            - unit_test
+          filters:
+            branches:
+              ignore: master
       - release_build:
-        requires:
-          - lint_test
-          - unit_test
-        filters:
-          branches:
-            only: master
+          requires:
+            - lint_test
+            - unit_test
+          filters:
+            branches:
+              only: master
