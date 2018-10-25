@@ -38,7 +38,7 @@ class CalculatorTest {
 
     @Test
     fun calculator_WrongInput() {
-        assertEquals(4, calculator.calculate("A+4"))
+        assertEquals(1, calculator.calculate("A+4"))
         assertEquals(5, calculator.calculate("5xB"))
     }
 
