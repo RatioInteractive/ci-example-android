@@ -1,5 +1,6 @@
 import buildTypes.MergeBuildType
 import buildTypes.ReleaseBuildType
+import buildTypes.VerifyTestBuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.project
 import jetbrains.buildServer.configs.kotlin.v2018_1.version
 import vcsRoots.GitHubRoot
@@ -9,6 +10,7 @@ version = "2018.1"
 project {
 
     vcsRoot(GitHubRoot())
+    buildType(VerifyTestBuildType())
     buildType(MergeBuildType())
     buildType(ReleaseBuildType())
 
