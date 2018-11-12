@@ -2,7 +2,6 @@ pipeline {
     agent {
         docker {
             image 'randr0id/android-docker'
-            args '-v $HOME/.gradle'
         }
     }
     options {
