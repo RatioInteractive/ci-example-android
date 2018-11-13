@@ -1,10 +1,10 @@
 pipeline {
     agent {
-        docker {
-            //image 'randr0id/android-docker'
+        //docker {
+           // //image 'randr0id/android-docker'
             label 'BA'
             
-        }
+       // }
     }
     options {
         // stop the build early in case of compile or test failures
