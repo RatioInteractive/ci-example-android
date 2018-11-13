@@ -2,7 +2,7 @@ pipeline {
     agent {
         //docker {
            // //image 'randr0id/android-docker'
-            label 'BA'
+            label 'Android'
             
        // }
     }
