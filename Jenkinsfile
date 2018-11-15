@@ -3,7 +3,6 @@ pipeline {
         //label 'android'
         docker {
             image 'randr0id/android-docker'
-            label 'android'
         }
     }
     options {
