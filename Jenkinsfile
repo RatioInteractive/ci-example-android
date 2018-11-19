@@ -10,18 +10,17 @@ pipeline {
         stage('Test') {
             parallel {
                 stage('Unit Test') {
-                    docker.image('hello-world').run()
-                    //docker.image('randr0id/android-docker').run() {
-                        //sh './gradlew unitTest'
+                    steps {
+                        sh './docker-run.sh "./gradlew unitTest"'
                         //junit '**/TEST-*.xml'
-                    //}
+                    }
                 }
-                //stage('Lint Test') {
-                    //steps {
-                        //sh './gradlew lintRelease'
+                stage('Lint Test') {
+                    steps {
+                        sh './docker-run.sh "./gradlew lintRelease"'
                         //androidLint pattern: '**/lint-results-*.xml'
-                    //}
-                //}
+                    }
+                }
             }
         }
     }
