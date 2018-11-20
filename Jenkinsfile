@@ -11,14 +11,14 @@ pipeline {
             parallel {
                 stage('Unit Test') {
                     steps {
-                        sh './docker-run.sh "./gradlew unitTest"'
-                        //junit '**/TEST-*.xml'
+                        sh './gradlew clean unitTest"'
+                        junit '**/TEST-*.xml'
                     }
                 }
                 stage('Lint Test') {
                     steps {
-                        sh './docker-run.sh "./gradlew lintRelease"'
-                        //androidLint pattern: '**/lint-results-*.xml'
+                        sh './gradlew clean lintRelease"'
+                        androidLint pattern: '**/lint-results-*.xml'
                     }
                 }
             }
