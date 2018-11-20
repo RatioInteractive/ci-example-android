@@ -11,13 +11,13 @@ pipeline {
             parallel {
                 stage('Unit Test') {
                     steps {
-                        sh './gradlew clean unitTest"'
+                        sh './gradlew clean unitTest'
                         junit '**/TEST-*.xml'
                     }
                 }
                 stage('Lint Test') {
                     steps {
-                        sh './gradlew clean lintRelease"'
+                        sh './gradlew clean lintRelease'
                         androidLint pattern: '**/lint-results-*.xml'
                     }
                 }
