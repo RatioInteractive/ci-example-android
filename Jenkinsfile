@@ -12,16 +12,26 @@ pipeline {
                 stage('Unit Test') {
                     steps {
                         sh './gradlew clean unitTest'
-                        junit '**/TEST-*.xml'
                     }
                 }
                 stage('Lint Test') {
                     steps {
                         sh './gradlew clean lintRelease'
-                        androidLint pattern: '**/lint-results-*.xml'
                     }
                 }
             }
+        }
+        stage('Publish Test Results') {
+            steps {
+                junit '**/TEST-*.xml'
+                androidLint pattern: '**/lint-results-*.xml'
+            }
+        }
+    }
+    post {
+        failure {
+            // notify team of the failure
+            mail to: 'randy.webster@globant.com', subject: 'Jenkins Build Failure', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
         }
     }
 }
