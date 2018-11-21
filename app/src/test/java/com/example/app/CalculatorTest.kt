@@ -45,7 +45,7 @@ class CalculatorTest {
     @Test
     fun calculator_AdditionIsCorrect() {
         assertEquals(15, calculator.calculate("5+10"))
-        assertEquals(19, calculator.calculate("5+4+10"))
+        assertEquals(18, calculator.calculate("5+4+10"))
     }
 
     @Test
