@@ -19,7 +19,7 @@ pipeline {
                         sh './gradlew clean lintRelease'
                     }
                     post {
-                        always { androidLint pattern: '**/lint-results-*.xml' }
+                        always { androidLint() }
                     }
                 }
             }
