@@ -3,10 +3,10 @@ pipeline {
         label 'android'
     }
 
-    options {
+    //options {
         // stop the build early in case of compile or test failures
         //skipStagesAfterUnstable()
-    }
+    //}
 
     stages {
         stage('Test') {
@@ -29,8 +29,8 @@ pipeline {
     }
 
     post {
-        always {
-        }
+        //always {
+        //}
 
         failure {
             // notify team of the failure
