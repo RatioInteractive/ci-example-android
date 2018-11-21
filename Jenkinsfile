@@ -22,10 +22,8 @@ pipeline {
             }
         }
         stage('Publish Test Results') {
-            steps {
-                junit '**/TEST-*.xml'
-                androidLint pattern: '**/lint-results-*.xml'
-            }
+            junit '**/TEST-*.xml'
+            androidLint pattern: '**/lint-results-*.xml'
         }
     }
     post {
