@@ -5,7 +5,7 @@ pipeline {
 
     options {
         // stop the build early in case of compile or test failures
-        skipStagesAfterUnstable()
+        //skipStagesAfterUnstable()
     }
 
     stages {
@@ -14,6 +14,7 @@ pipeline {
                 stage('Unit Test') {
                     steps {
                         sh './gradlew clean unitTest'
+                        junit '**/TEST-*.xml'
                     }
                 }
 
@@ -29,7 +30,6 @@ pipeline {
 
     post {
         always {
-            junit '**/TEST-*.xml'
         }
 
         failure {
