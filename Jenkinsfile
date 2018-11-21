@@ -3,11 +3,6 @@ pipeline {
         label 'android'
     }
 
-    //options {
-    // stop the build early in case of compile or test failures
-    //skipStagesAfterUnstable()
-    //}
-
     stages {
         stage('Test') {
             parallel {
@@ -20,7 +15,6 @@ pipeline {
                 stage('Lint Test') {
                     steps {
                         sh './gradlew clean lintRelease'
-                        androidLint pattern: '**/lint-results-*.xml'
                     }
                 }
             }
@@ -30,6 +24,7 @@ pipeline {
     post {
         always {
             junit '**/TEST-*.xml'
+            androidLint pattern: '**/lint-results-*.xml'
         }
 
         failure {
