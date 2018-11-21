@@ -17,9 +17,7 @@ pipeline {
                 stage('Lint Test') {
                     steps {
                         sh './gradlew clean lintRelease'
-                    }
-                    post {
-                        always { androidLint() }
+                        androidLint pattern: '**/lint-results-*.xml'
                     }
                 }
             }
