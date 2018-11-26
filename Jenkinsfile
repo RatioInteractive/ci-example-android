@@ -14,7 +14,7 @@ pipeline {
             parallel {
                 stage('Unit Test') {
                     steps {
-                        sh './gradlew clean unitTest'
+                        sh './gradlew --info clean unitTest'
                     }
                     post {
                         always { junit '**/TEST-*.xml' }
