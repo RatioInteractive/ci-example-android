@@ -5,6 +5,12 @@ pipeline {
 
     stages {
         stage('Test') {
+            when {
+                anyOf {
+                    branch 'master'
+                    changeRequest()
+                }
+            }
             parallel {
                 stage('Unit Test') {
                     steps {
@@ -22,12 +28,25 @@ pipeline {
                 }
             }
         }
+        stage('Merge Build') {
+            when { changeRequest() }
+            steps {
+                sh './gradlew clean assembleRelease'
+            }
+        }
+        stage('Release Build') {
+            when { branch 'master' }
+            steps {
+                sh "./gradlew clean assembleRelease -PbuildNumber=${env.BUILD_NUMBER}"
+                archiveArtifacts '**/*release.apk'
+            }
+        }
     }
 
     /*post {
         failure {
             // notify team of the failure
-            //mail to: 'randy.webster@globant.com', subject: "${env.JOB_NAME} Failed", charset: 'UTF-8', mimeType: 'text/html', body: "Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br><br> ${env.BUILD_URL}"
+            //mail to: 'somebody@liveperson.com', subject: "${env.JOB_NAME} Failed", charset: 'UTF-8', mimeType: 'text/html', body: "Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br><br> ${env.BUILD_URL}"
         }
     }*/
 }
